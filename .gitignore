@@ -1,0 +1,34 @@
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Sensitive files
+*.key
+*.pem
+*.p12
+*.pfx
+
+# Large binary files (keep only scripts and configs)
+*.exe
+*.msi
+*.iso
+*.zip
+*.7z
+*.rar
+
+# Original CIS files (keep only modified versions)
+Server2022StandAlonev1.0.0/
+LGPO_30/
+Policy Analyzer/
+Tenable-3/
+TestBackup/
+
+# Git
+.git/
