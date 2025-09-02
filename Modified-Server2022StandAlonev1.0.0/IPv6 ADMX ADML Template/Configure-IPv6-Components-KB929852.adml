@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>Center for Internet Security Benchmark Display Name</displayName>
+  <description>Center for Internet Security Benchmark Description</description>
+  <resources>
+    <stringTable>
+      <string id="Cat_CIS">Center for Internet Security (CIS)</string>
+      <string id="Cat_CIS_BenchmarkAddlSettings">Additional Benchmark Settings</string>
+      <string id="ConfigureIPv6Components">Configure IPv6 components</string>
+      <string id="ConfigureIPv6Components_Help">This policy enables configuration of IPv6 functionality. Any changes to this setting require a computer restart to take effect.
+
+Internet Protocol version 6 (IPv6) has been a mandatory part of all Windows versions released since 2006. Microsoft recommends against disabling IPv6 or IPv6 components or unbinding IPv6 from interfaces, except when troubleshooting networking-related issues such as name resolution issues. Disabling IPv6 may cause some Windows features or components to malfunction.
+
+The choices available when enabling this policy include:
+
+    * Enable all IPv6 interfaces (default)
+
+    * Prefer IPv4 over IPv6
+      (Microsoft recommends using "Prefer IPv4 over IPv6" instead of disabling all IPv6 components.)
+
+    * Disable IPv6 on all tunnel interfaces
+
+    * Disable IPv6 on all non-tunnel interfaces
+
+    * Disable IPv6 on all interfaces (except loopback)
+      (Specifically, this option disables IPv6 on all non-tunnel interfaces (except the loopback) and on all IPv6 tunnel interfaces)
+
+    * Disable all IPv6 interfaces
+
+Configuring this policy to "Disabled" restores IPv6 to its default Windows configuration.
+
+Because the underlying registry value is not under one of Windows' standard "Policies" keys, changing this policy from "Enabled" to "Not Configured" will not remove or alter the setting on affected endpoints. (This scenario exemplifies what is commonly referred to as a "tattooing" setting.)
+
+For more information, see https://support.microsoft.com/kb/929852
+      </string>
+      <string id="IPv6_EnableAll">Enable all IPv6 interfaces (default)</string>
+      <string id="IPv6_PreferIPv4OverIPv6">Prefer IPv4 over IPv6</string>
+      <string id="IPv6_DisableOnTunnelInterfaces">Disable IPv6 on all tunnel interfaces</string>
+      <string id="IPv6_DisableOnNativeInterfaces">Disable IPv6 on all non-tunnel interfaces</string>
+      <string id="IPv6_DisableExceptOnLoopback">Disable IPv6 on all interfaces (except loopback)</string>
+      <string id="IPv6_DisableAllIPv6">Disable all IPv6 interfaces</string>
+    </stringTable>
+    <presentationTable>
+      <presentation id="Pol_CISBenchmark_ConfigureIPv6Components">
+        <dropdownList refId="Pol_CISBenchmark_ConfigureIPv6ComponentsCfg" noSort="true" defaultItem="0">Configure IPv6 components</dropdownList>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

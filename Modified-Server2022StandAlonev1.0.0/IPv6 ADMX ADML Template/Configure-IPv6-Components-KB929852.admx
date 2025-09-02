@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   revision="1.0"
+                   schemaVersion="1.0"
+                   xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+    <policyNamespaces>
+        <target prefix="CISBenchmark" namespace="CIS.Policies.CISBenchmark" />
+        <using prefix="windows" namespace="Microsoft.Policies.Windows" />
+    </policyNamespaces>
+    <resources minRequiredRevision="1.0" />
+    <categories>
+        <category name="Cat_CIS" displayName="$(string.Cat_CIS)"/>
+        <category name="Cat_CIS_BenchmarkAddlSettings" displayName="$(string.Cat_CIS_BenchmarkAddlSettings)">
+            <parentCategory ref="Cat_CIS"/>
+        </category>
+    </categories>
+    <policies>
+        <policy name="Pol_ConfigureIPv6Components"
+                class="Machine"
+                displayName="$(string.ConfigureIPv6Components)"
+                explainText="$(string.ConfigureIPv6Components_Help)"
+                key="SYSTEM\CurrentControlSet\Services\TCPIP6\Parameters"
+                valueName="DisabledComponents"
+                presentation="$(presentation.Pol_CISBenchmark_ConfigureIPv6Components)"
+                >
+            <parentCategory ref="Cat_CIS_BenchmarkAddlSettings" />
+            <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+            <elements>
+                <enum id="Pol_CISBenchmark_ConfigureIPv6ComponentsCfg" key="SYSTEM\CurrentControlSet\Services\TCPIP6\Parameters" valueName="DisabledComponents">
+                    <item displayName="$(string.IPv6_EnableAll)">
+                        <value>
+                            <decimal value="0"/>
+                        </value>
+                    </item>
+                    <item displayName="$(string.IPv6_PreferIPv4OverIPv6)">
+                        <value>
+                            <decimal value="32"/>
+                        </value>
+                    </item>
+                    <item displayName="$(string.IPv6_DisableOnTunnelInterfaces)">
+                        <value>
+                            <decimal value="1"/>
+                        </value>
+                    </item>
+                    <item displayName="$(string.IPv6_DisableOnNativeInterfaces)">
+                        <value>
+                            <decimal value="16"/>
+                        </value>
+                    </item>
+                    <item displayName="$(string.IPv6_DisableExceptOnLoopback)">
+                        <value>
+                            <decimal value="17"/>
+                        </value>
+                    </item>
+                    <item displayName="$(string.IPv6_DisableAllIPv6)">
+                        <value>
+                            <decimal value="255"/>
+                        </value>
+                    </item>
+                </enum>
+            </elements>
+        </policy>
+    </policies>
+</policyDefinitions>
