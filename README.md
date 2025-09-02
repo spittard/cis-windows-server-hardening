@@ -4,7 +4,10 @@ This repository contains PowerShell scripts for implementing CIS (Center for Int
 
 ## Contents
 
-- **CIS-Hardening-RDP-Fix.ps1**: All-in-one script that applies CIS Level 1 security baseline while ensuring RDP access remains functional
+- **Final-CIS-Hardening-Script.ps1**: **RECOMMENDED** - Streamlined script that modifies CIS policies and prepares for reboot
+- **Post-Reboot-Commands.ps1**: Commands to run after reboot to complete the hardening process
+- **CIS-Hardening-RDP-Fix.ps1**: Original all-in-one script that applies CIS Level 1 security baseline while ensuring RDP access remains functional
+- **All-In-One-CIS-Hardening.ps1**: Comprehensive script with automatic downloads and full verification
 
 ## Features
 
@@ -32,8 +35,28 @@ This repository contains PowerShell scripts for implementing CIS (Center for Int
 - CIS Server 2022 Standalone v1.0.0 GPO backup files
 - Administrative privileges
 
-## Usage
+## Quick Start (Recommended)
 
+1. **Prepare the server:**
+   - Create `C:\CIS` folder
+   - Extract `Server2022StandAlonev1.0.0.zip` into `C:\CIS\`
+   - Place `LGPO.exe` in `C:\CIS\`
+   - Create CISADMIN user and add to Administrators and Remote Desktop Users groups
+
+2. **Run the main hardening script:**
+   ```powershell
+   .\Final-CIS-Hardening-Script.ps1
+   ```
+   The server will reboot automatically.
+
+3. **After reboot, reconnect with AWS Session Manager and run:**
+   ```powershell
+   .\Post-Reboot-Commands.ps1
+   ```
+
+## Alternative Usage
+
+For the original comprehensive script:
 1. Ensure LGPO.exe is available at `C:\CIS\LGPO.exe`
 2. Place CIS GPO backup files in `C:\CIS\Server2022StandAlonev1.0.0\`
 3. Run the script as Administrator:
