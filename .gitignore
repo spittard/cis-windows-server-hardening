@@ -23,12 +23,12 @@ $RECYCLE.BIN/
 *.7z
 *.rar
 
-# Original CIS files (keep only modified versions)
-Server2022StandAlonev1.0.0/
-LGPO_30/
-Policy Analyzer/
-Tenable-3/
-TestBackup/
+# Keep all CIS files (both original and modified versions)
+# Server2022StandAlonev1.0.0/ - REMOVED: Keep original for reference
+# LGPO_30/ - REMOVED: Keep LGPO utility
+# Policy Analyzer/ - REMOVED: Keep policy analyzer tools
+# Tenable-3/ - REMOVED: Keep Tenable configs
+# TestBackup/ - REMOVED: Keep test backups
 
 # Git
 .git/

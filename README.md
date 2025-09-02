@@ -46,12 +46,16 @@ This repository contains PowerShell scripts for implementing CIS (Center for Int
 ## File Structure
 
 ```
-Modified-Server2022StandAlonev1.0.0/
-├── CIS-Hardening-RDP-Fix.ps1
-├── MS-L1/                          # Microsoft Level 1 baseline
-├── MS-L2/                          # Microsoft Level 2 baseline
-├── PolicyAnalyzer_40/              # Policy analysis tools
-└── [Other CIS components...]
+├── Server2022StandAlonev1.0.0/     # Original CIS policies (unmodified)
+├── Modified-Server2022StandAlonev1.0.0/
+│   ├── CIS-Hardening-RDP-Fix.ps1   # Main hardening script
+│   ├── MS-L1/                      # Modified Microsoft Level 1 baseline
+│   ├── MS-L2/                      # Modified Microsoft Level 2 baseline
+│   └── [Other modified CIS components...]
+├── LGPO_30/                        # LGPO utility and documentation
+├── Policy Analyzer/                # Policy analysis tools
+├── Tenable-3/                      # Tenable configuration files
+└── TestBackup/                     # Test backup files
 ```
 
 ## Security Considerations
@@ -59,7 +63,8 @@ Modified-Server2022StandAlonev1.0.0/
 - This script modifies security policies to balance CIS compliance with operational requirements
 - RDP access is maintained for administrative purposes
 - All changes are logged and can be audited
-- Original CIS policies are preserved in the source directory
+- **Original CIS policies are preserved** in `Server2022StandAlonev1.0.0/` for reference and comparison
+- **Modified policies** are in `Modified-Server2022StandAlonev1.0.0/` with RDP-friendly configurations
 
 ## Contributing
 
