@@ -4,8 +4,8 @@
 
 # --- Step 1: Set Up File Paths ---
 Write-Host "--- Step 1: Setting up file paths... ---" -ForegroundColor Cyan
-$lgpoPath = "C:\CIS\LGPO.exe"
-$cisGpoBackupFolder = "C:\CIS\Server2022StandAlonev1.0.0"
+$lgpoPath = "C:\projects\cis-windows-server-hardening\LGPO_30\LGPO.exe"
+$cisGpoBackupFolder = "C:\projects\cis-windows-server-hardening\Server2022StandAlonev1.0.0"
 $msL1GpoFolder = Join-Path -Path $cisGpoBackupFolder -ChildPath "MS-L1"
 $polFilePath = Join-Path -Path $msL1GpoFolder -ChildPath "{B792AF4D-F4ED-4D42-9424-D884C7C7E529}\DomainSysvol\GPO\Machine\registry.pol"
 $infFilePath = Join-Path -Path $msL1GpoFolder -ChildPath "{B792AF4D-F4ED-4D42-9424-D884C7C7E529}\DomainSysvol\GPO\Machine\microsoft\windows nt\SecEdit\GptTmpl.inf"

@@ -9,7 +9,7 @@
 param(
     [switch]$SkipReboot,
     [switch]$Verbose,
-    [string]$CISPath = "C:\CIS"
+    [string]$CISPath = "C:\projects\cis-windows-server-hardening"
 )
 
 # Set error action preference
@@ -62,8 +62,8 @@ if ($osVersion.Major -lt 10) {
 }
 Write-Success "Windows version compatible: $($osVersion.Major).$($osVersion.Minor)"
 
-# Create CIS directory structure
-Write-ColorOutput "Creating CIS directory structure..." "Yellow"
+# Verify CIS directory structure exists
+Write-ColorOutput "Verifying CIS directory structure..." "Yellow"
 $cisDirectories = @(
     $CISPath,
     "$CISPath\Server2022StandAlonev1.0.0",
@@ -72,10 +72,11 @@ $cisDirectories = @(
 
 foreach ($dir in $cisDirectories) {
     if (-not (Test-Path $dir)) {
-        New-Item -ItemType Directory -Path $dir -Force | Out-Null
-        Write-Success "Created directory: $dir"
+        Write-Error "Required directory not found: $dir"
+        Write-ColorOutput "Please ensure the repository is properly extracted with all required folders." "Yellow"
+        exit 1
     } else {
-        Write-ColorOutput "Directory exists: $dir" "Gray"
+        Write-Success "Directory found: $dir"
     }
 }
 
