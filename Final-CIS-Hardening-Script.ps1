@@ -51,10 +51,27 @@ $rdpUsersSid = "*S-1-5-32-555" # Remote Desktop Users
 } | Set-Content $infFilePath
 Write-Host "GptTmpl.inf has been modified." -ForegroundColor Green
 
-# --- Step 4: Reset Local Policy to Defaults and Reboot ---
-Write-Host "--- Step 4: Resetting local policy and preparing to reboot... ---" -ForegroundColor Cyan
-secedit /configure /cfg $env:windir\inf\defltbase.inf /db defltbase.sdb /verbose
-Write-Host "Policy reset. The server will now reboot in 15 seconds." -ForegroundColor Yellow
+# --- Step 4: Apply Modified CIS Policies and Reboot ---
+Write-Host "--- Step 4: Applying modified CIS policies and preparing to reboot... ---" -ForegroundColor Cyan
+
+# Apply the modified registry policy
+Write-Host "Applying modified registry policy..." -ForegroundColor Yellow
+& $lgpoPath /t $polFilePath
+
+# Apply the modified security template
+Write-Host "Applying modified security template..." -ForegroundColor Yellow
+secedit /configure /cfg $infFilePath /db secedit.sdb /verbose
+
+# Enable RDP through registry (backup method)
+Write-Host "Enabling RDP through registry..." -ForegroundColor Yellow
+Set-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server" -Name "fDenyTSConnections" -Value 0 -Force
+
+# Configure Windows Firewall for RDP
+Write-Host "Configuring Windows Firewall for RDP..." -ForegroundColor Yellow
+netsh advfirewall firewall set rule group="Remote Desktop" new enable=Yes | Out-Null
+netsh advfirewall firewall add rule name="RDP-In" dir=in action=allow protocol=TCP localport=3389 remoteip=any | Out-Null
+
+Write-Host "Modified CIS policies applied successfully. The server will now reboot in 15 seconds." -ForegroundColor Green
 Start-Sleep -Seconds 15
 Restart-Computer -Force
 
